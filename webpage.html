@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>yavtechnology.com</title>
+    </head>
+    <style>
+        
+        h1{
+            color:chocolate;
+            text-align: center;
+        }
+        input{
+            text-align: left;
+           
+
+        }
+        label {
+            display:inline-block;
+            text-align:left;
+            width: 350px;
+        }
+        form{
+            width: 50vw; 
+            margin-left : 25vw;
+        }
+        button{
+            background-color:chocolate; 
+            color:cornsilk;width:25em;
+            text-align: center;
+        }
+        </style>
+        <h1>Book a Call</h1>
+        <h3 style="text-align: center;">Book a call slot and our representative will call you within one hour of selected time</h3>
+        <hr>
+    
+        <form onsubmit="savetolocalstorage(event)">
+            <fieldset style="text-align: center;">
+              <br>
+              <label><b>Name:</b></label><br>
+              <input type="text"  name="username" required size=50><br><br>
+              <label><b>Email:</b></label><br>
+              <input type="mail"  name="email" required size=50><br><br>
+              <label><b>Phone:</b></label><br>
+              <input type="tel"  name="phone" required size=50><br><br>
+              <label><b>Time for call:</b></label><br>
+              <input type="datetime-local" name="time" size=100 style="width:25em;"><br><br>
+              <button><b>GET CALL</b></button>
+
+
+            </fieldset>
+          </form>
+          <script>
+              function savetolocalstorage(event){
+                event.preventDefault()
+                  /*const name=event.target.username.value
+                  const email=event.target.email.value
+                  const phone=event.target.phone.value
+                  const time=event.target.time.value
+                  localStorage.setItem('name',name)
+                  localStorage.setItem('email',email)
+                  localStorage.setItem('phone',phone) 
+                  localStorage.setItem('time',time) */
+                  //by default all the values are stored in string format and cannot be represented in original input format,so
+                  let request_details={
+                      name:event.target.username.value,
+                      email:event.target.email.value,
+                      phone:event.target.phone.value,
+                      time:event.target.time.value
+                  }
+                  //to convert the default string format serialization is used-to convert to readable data
+                  let request_details_serialize=JSON.stringify(request_details)
+                 
+                  
+                  //this will show the values in string format 
+                  localStorage.setItem("request-details",request_details_serialize)
+                  //this will deserialize the prev an convert to original format of input
+                  let request_details_deserialize=JSON.parse(localStorage.getItem("request-details"))
+                  console.log(request_details_deserialize)
+              }
+          </script>
+          
+
+
+    </body>
+</html>
+
+
+  
